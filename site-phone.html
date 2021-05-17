@@ -61,16 +61,15 @@
                         Введите Ваш номер
                     </label>
                     <input class="site-phone__input" name="phone" type="tel" placeholder="Ваш номер" required>
-                    <button class="site-phone__change-btn" type="button">Выберите дату и врeмя для звонка</button>
+                    <button class="site-phone__change-btn" type="button" id="reset">Выберите дату и врeмя для звонка</button>
                     <fieldset class="site-phone__list-container">
-                        <select class="site-phone__list" name="" id="" required>
-                            <option style="display: none;">День *</option>  
+                        <select class="site-phone__list" name="" id="select-day" required>
+                            <option style="display: none;" disabled selected>День *</option>  
                             <option value="Today">Сегодня</option> 
                             <option value="Tomorrow">Завтра</option> 
                         </select>
-                        <!-- <input class="site-phone__list" type="time" id="time" name="time" placeholder="Время *"/> -->
-                        <select class="site-phone__list" name="" id="" required>
-                            <option style="display: none;">Время *</option>  
+                        <select class="site-phone__list" name="" id="select-time" disabled="true" required>
+                            <option style="display: none;" disabled selected>Время *</option>  
                             <option value="9:00">9:00</option>  
                             <option value="10:00">10:00</option>  
                             <option value="11:00">11:00</option>  

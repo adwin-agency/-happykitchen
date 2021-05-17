@@ -6,6 +6,7 @@
 
 // Показать-скрыть кнопку открытия сайтфона .site-phone__preview-btn добавляем .hide.
 
+// 
 const  chengeForm = (textAfter, textBefore ) => {
     if(document.querySelector('.site-phone__list-container')) {
 
@@ -14,6 +15,9 @@ const  chengeForm = (textAfter, textBefore ) => {
 
         form.classList.contains('show') ? btn.textContent= textAfter : btn.textContent= textBefore;
         form.classList.toggle('show')
+    }
+    else {
+        console.log('Ошибка переданных данных')
     }
 }
 
@@ -42,6 +46,32 @@ const closeForm = (openEl, closeEl) => {
         console.log('Ошибка переданных данных')
     }
 }
+const resetSelect = (selectEl) => {
+    if(document.querySelectorAll(`.${selectEl}`)) {
+        const select = document.querySelectorAll(`.${selectEl}`);
+        select.forEach((item)=> {
+            item.selectedIndex = 0;
+        })
+        // Рендер при обнулении
+        selectUnlock('select-day', 'select-time')
+    }
+    else {
+        console.log('Ошибка переданных данных')
+    }
+}
+const selectUnlock = (selectFlag, selectСhangeable ) => {
+    if(document.getElementById(`${selectFlag}`) && document.getElementById(`${selectСhangeable}`)) {
+        const selectFirst = document.getElementById(`${selectFlag}`);
+        const selectSecond = document.getElementById(`${selectСhangeable}`);
+
+
+        selectFirst.selectedIndex !== 0 ? selectSecond.disabled = false : selectSecond.disabled = true;
+        
+    }
+    else {
+        console.log('Ошибка переданных данных')
+    }
+}
 
 document.querySelector('.site-phone__preview-btn').addEventListener('click', () => {
   openForm('site-phone__container', 'site-phone__preview-btn')
@@ -51,7 +81,11 @@ document.querySelector('.site-phone__close-btn').addEventListener('click', () =>
   closeForm('site-phone__container', 'site-phone__preview-btn')
 })
 
-document.querySelector('.site-phone__change-btn').addEventListener('click', ()=> {
+document.querySelector('.site-phone__change-btn').addEventListener('click', () => {
     chengeForm('Выберите дату и врeмя для звонка', 'Позвонить сейчас');
-})
+    resetSelect('site-phone__list');
 
+})
+document.getElementById('select-day').addEventListener('change', () => {
+    selectUnlock('select-day', 'select-time')
+})
